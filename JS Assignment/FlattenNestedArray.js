@@ -2,16 +2,11 @@
 Note: the output should be in the form:[ 5, 22, 14, 4, 5, 6 ]
 */
 
-var flatten = function(a, shallow,r){
-    if(!r){ r = []}
-     
-  if (shallow) {
-    return r.concat.apply(r,a);
-    }
-        
+var flatten = function(a){
+        var r=[];
      for(var i=0; i<a.length; i++){
           if(a[i].constructor == Array){
-              flatten(a[i],shallow,r);
+              r=r.concat(flatten(a[i]));
           }else{
               r.push(a[i]);
           }
@@ -20,6 +15,4 @@ var flatten = function(a, shallow,r){
   }
   
   console.log(flatten([1, [2], [3, [[4]]],[5,6]]));
-  
-//   console.log(flatten([1, [2], [3, [[4]]],[5,6]], true));
   
